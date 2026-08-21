@@ -1,21 +1,18 @@
 #pragma once
 
-#include "profiler/Timer.h"
+#include "Timer.h"
 
+#include <cstdint>
 #include <string_view>
 
 namespace Profiler
 {
 
-struct ProfileEvent
-{
-  std::string_view name {};
-};
-
 struct TimeSample
 {
-  ProfileEvent metadata {};
+  std::int32_t id {};
   Timer::Duration duration {};
+  std::string_view name {"TIME"};
 };
 
 } // namespace Profiler

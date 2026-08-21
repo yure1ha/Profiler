@@ -1,28 +1,31 @@
-#include "profiler/Profiler.h"
+#include "Profiler/Profiler.h"
 
-#include "profiler/ProfilerSink.h"
-
+#include <chrono>
+#include <iostream>
 #include <memory>
 #include <utility>
 
 namespace Profiler
 {
 
-void Profiler::addSink(SinkPtr sink) { sinks_.push_back(std::move(sink)); }
-
-void Profiler::record(const TimeSample& sample)
+void Profiler::addSink(std::unique_ptr<ISink> sink)
 {
-  for (const auto& sink : sinks_)
+  m_sinks.push_back(std::move(sink));
+}
+
+void Profiler::flushSinks()
+{
+  for (const auto& sink : m_sinks)
   {
-    sink->write(sample);
+    sink->flush();
   }
 }
 
-void Profiler::flush()
+void Profiler::record(const TimeSample& timeSample)
 {
-  for (const auto& sink : sinks_)
+  for (const auto& sink : m_sinks)
   {
-    sink->flush();
+    sink->write(timeSample);
   }
 }
 
