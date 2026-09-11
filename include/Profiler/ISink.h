@@ -2,23 +2,21 @@
 
 #include "Profiler/ProfileEvents.h"
 
-namespace Profiler
-{
+namespace Profiler {
 
-class ISink
-{
-public:
-  ISink() = default;
-  virtual ~ISink() = default;
+class ISink {
+  public:
+    ISink() = default;
+    virtual ~ISink() = default;
 
-  ISink(const ISink&) = delete;
-  ISink& operator=(const ISink&) = delete;
+    ISink(const ISink&) = delete;
+    ISink& operator=(const ISink&) = delete;
 
-  ISink(ISink&&) = delete;
-  ISink& operator=(ISink&&) = delete;
+    ISink(ISink&&) = delete;
+    ISink& operator=(ISink&&) = delete;
 
-  virtual void write(const TimeSample& timeSample) = 0;
-  virtual void flush() = 0;
+    virtual void write(const TimeSample& timeSample) = 0;
+    virtual void flush() = 0;
 };
 
 } // namespace Profiler
