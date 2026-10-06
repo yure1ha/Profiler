@@ -23,8 +23,8 @@ class ScopedTimer {
     ScopedTimer(const ScopedTimer&) = delete;
     ScopedTimer& operator=(const ScopedTimer&) = delete;
 
-    ScopedTimer(ScopedTimer&&) = delete;
-    ScopedTimer& operator=(ScopedTimer&&) = delete;
+    ScopedTimer(ScopedTimer&&) noexcept = delete;
+    ScopedTimer& operator=(ScopedTimer&&) noexcept = delete;
 
     [[nodiscard]] std::int32_t id() const {
         return m_id;

@@ -12,8 +12,8 @@ class ISink {
     ISink(const ISink&) = delete;
     ISink& operator=(const ISink&) = delete;
 
-    ISink(ISink&&) = delete;
-    ISink& operator=(ISink&&) = delete;
+    ISink(ISink&&) noexcept = delete;
+    ISink& operator=(ISink&&) noexcept = delete;
 
     virtual void write(const TimeSample& timeSample) = 0;
     virtual void flush() = 0;
