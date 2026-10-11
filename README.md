@@ -1,6 +1,6 @@
 # Profiler
 
-A simple C++ profiling tool, currently consisting of an RAII (Resource Acquisition Is Initialization) scoped timer
+A lightweight C++ profiling tool, currently consisting of an RAII (Resource Acquisition Is Initialization) scoped timer
 using std::chrono::steady_clock to guarantee monotonic timing.
 
 ## Architecture

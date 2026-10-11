@@ -9,32 +9,30 @@
 namespace Profiler {
 
 class ScopedTimer {
-  public:
-    ScopedTimer(std::int32_t id, Profiler& profiler) : m_id {id}, m_profiler {profiler} {}
+public:
+  ScopedTimer(std::int32_t id, Profiler& profiler) : m_id {id}, m_profiler {profiler} {}
 
-    ~ScopedTimer() {
-        TimeSample timeSample;
-        timeSample.id = m_id;
-        timeSample.duration = m_timer.elapsed();
+  ~ScopedTimer() {
+    TimeSample timeSample;
+    timeSample.id = m_id;
+    timeSample.duration = m_timer.elapsed();
 
-        m_profiler.record(timeSample);
-    }
+    m_profiler.record(timeSample);
+  }
 
-    ScopedTimer(const ScopedTimer&) = delete;
-    ScopedTimer& operator=(const ScopedTimer&) = delete;
+  ScopedTimer(const ScopedTimer&) = delete;
+  ScopedTimer& operator=(const ScopedTimer&) = delete;
 
-    ScopedTimer(ScopedTimer&&) noexcept = delete;
-    ScopedTimer& operator=(ScopedTimer&&) noexcept = delete;
+  ScopedTimer(ScopedTimer&&) noexcept = delete;
+  ScopedTimer& operator=(ScopedTimer&&) noexcept = delete;
 
-    [[nodiscard]] std::int32_t id() const {
-        return m_id;
-    }
+  [[nodiscard]] std::int32_t id() const { return m_id; }
 
-  private:
-    std::int32_t m_id {};
+private:
+  std::int32_t m_id {};
 
-    Timer m_timer;
-    Profiler& m_profiler;
+  Timer m_timer;
+  Profiler& m_profiler;
 };
 
 } // namespace Profiler
